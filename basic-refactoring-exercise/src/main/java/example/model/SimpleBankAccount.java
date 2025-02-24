@@ -33,12 +33,12 @@ public class SimpleBankAccount implements BankAccount {
 
     @Override
     public void withdraw(final int userID, final double amount) {
-        if (checkUser(userID) && isWithdrawAllowed(amount)) {
+        if (checkUser(userID) && enoughMoneyInBalance(amount)) {
             this.balance -= amount;
         }
     }
 
-    private boolean isWithdrawAllowed(final double amount){
+    private boolean enoughMoneyInBalance(final double amount){
         return this.balance >= amount;
     }
 
