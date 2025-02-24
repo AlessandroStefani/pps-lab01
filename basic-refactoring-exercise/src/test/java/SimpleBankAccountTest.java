@@ -54,4 +54,18 @@ class SimpleBankAccountTest {
         bankAccount.withdraw(WRONG_ID, SEVENTY_EUROS);
         assertEquals(HUNDRED_EUROS, bankAccount.getBalance());
     }
+
+    @Test
+    void testDepositNegativeAmount() {
+        bankAccount.deposit(accountHolder.getId(), HUNDRED_EUROS);
+        bankAccount.deposit(accountHolder.getId(), -SEVENTY_EUROS);
+        assertEquals(HUNDRED_EUROS, bankAccount.getBalance());
+    }
+
+    @Test
+    void testWithdrawNegativeAmount() {
+        bankAccount.deposit(accountHolder.getId(), HUNDRED_EUROS);
+        bankAccount.withdraw(accountHolder.getId(), -SEVENTY_EUROS);
+        assertEquals(HUNDRED_EUROS, bankAccount.getBalance());
+    }
 }

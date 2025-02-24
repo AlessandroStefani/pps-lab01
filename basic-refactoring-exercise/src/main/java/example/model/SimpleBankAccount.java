@@ -26,17 +26,18 @@ public class SimpleBankAccount implements BankAccount {
 
     @Override
     public void deposit(final int userID, final double amount) {
-        if (checkUser(userID)) {
+        if (checkUser(userID) && isPositive(amount)) {
             this.balance += amount;
         }
     }
 
     @Override
     public void withdraw(final int userID, final double amount) {
-        if (checkUser(userID) && enoughMoneyInBalance(amount)) {
+        if (checkUser(userID) && enoughMoneyInBalance(amount) && isPositive(amount)) {
             this.balance -= amount;
         }
     }
+    private boolean isPositive(double amount) { return amount >= 0; }
 
     private boolean enoughMoneyInBalance(final double amount){
         return this.balance >= amount;
